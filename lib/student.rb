@@ -8,6 +8,17 @@ class Student
       @grade = grade
     end
 
+    def .create_table
+      sql =  <<-SQL 
+     CREATE TABLE IF NOT EXISTS students (
+       id INTEGER PRIMARY KEY, 
+       name TEXT, 
+       grade TEXT
+       )
+       SQL
+   DB[:conn].execute(sql)
+    end
+
     def save
       sql = <<-SQL
         INSERT INTO students (name, grade)
